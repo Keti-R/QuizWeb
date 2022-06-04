@@ -1,6 +1,6 @@
 const express = require("express");
 const { validationResult } = require("express-validator");
-const prisma = require("../client/prisma");
+const prisma = require("../prisma");
 const { UserSignUpValidator } = require("../validators/user");
 
 const routes = express.Router();
