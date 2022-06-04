@@ -15,7 +15,7 @@ model User {
   firstName String
   lastName String
   age Int
-  posts Post[]
+  order order[]
 }
 
 model Product {
@@ -23,19 +23,15 @@ model Product {
     name String @unique
     price Int @default(999)
     Quantity Int 
+    order order[]
 }
 
 
-model Order {
+model order {
   id Int @id @default(autoincrement())
   CreatedAt DateTime @default(now())
   User User @relation(fields: [UserId],references: [id] )
   UserId Int
-}
-
-model Post {
-  id Int @id() @default(autoincrement())
-  name String
-  Product User  @relation(fields: [ProductId], references: [id])
+   Product User  @relation(fields: [ProductId], references: [id])
   ProductId Int
 }
