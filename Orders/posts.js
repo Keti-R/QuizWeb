@@ -4,14 +4,15 @@ const prisma = require("../client/prisma");
 const router = express.Router();
 
 
+
 router.post("/", async (req, res) => {
-  const user = await prisma.user.findUnique({ where: { id: 8 } });
-  const post = await prisma.post.create({
-    data: {
-      name: req.body.name,
-      UserId: user.id,
+  const product = await prisma.Product.create({
+    data:
+    {
+        userId: req.body.order.userId,
+        itemId: req.body.order.product.id,
     },
-  });
+});
   return res.json({ data: post });
 });
 
