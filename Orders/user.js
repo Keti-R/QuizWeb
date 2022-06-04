@@ -28,5 +28,26 @@ routes.get("/", async (req, res) => {
   });
   return res.json({ data: users });
 });
+router.get("/:id", async (req, res) => {
+  const product = await prisma.Product.findUnique({ where: { id: req.body.id } });
+  return res.json({ data: product });
+});
+
+router.post("/", async (req, res) => {
+  const product = await prisma.Product.create({
+      data:
+      {
+          name: req.body.name,
+          price: req.body.price,
+          amount: req.body.quantity
+      },
+  })
+ });
+ if (product.quantity == 0)
+ return res.status(400).json(
+    { data: null, error: "invalid" });
+
+return res.json({ data: post });
+
 
 module.exports = routes;
